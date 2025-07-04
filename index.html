@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人介绍网站</title>
+  <style>
+    /* 基础样式 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; line-height: 1.6; }
+    /* 导航栏样式 */
+    .navbar { position: fixed; top: 0; width: 100%; background: white; padding: 1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 1000; }
+    .nav-links { display: flex; justify-content: flex-end; list-style: none; }
+    .nav-links li { margin-left: 2rem; }
+    .nav-links a { color: #ff69b4; text-decoration: none; }
+    /* Hero区域样式 */
+    .hero { background: linear-gradient(45deg, #ffb6d5, #ff69b4); color: white; padding: 8rem 2rem; display: flex; align-items: center; justify-content: space-around; margin-top: 60px; }
+    .profile-img { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; }
+    .hero-content { max-width: 500px; }
+    .cta-button { background: #fff; color: #ff69b4; border: none; padding: 0.75rem 2rem; border-radius: 25px; font-size: 1rem; cursor: pointer; margin-top: 1.5rem; transition: background 0.2s, color 0.2s; }
+    .cta-button:hover { background: #ff69b4; color: #fff; border: 1px solid #fff; }
+    /* 其他区域通用样式 */
+    section { padding: 4rem 2rem; }
+    .section-title { color: #ff69b4; text-align: center; margin-bottom: 2rem; }
+    .about-content { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; max-width: 900px; margin: 0 auto; }
+    .about-text, .experience { flex: 1; min-width: 250px; }
+    .experience ul { margin-left: 1.5rem; margin-bottom: 1rem; }
+    /* 技能区域 */
+    .skills-container { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
+    .skill-item { background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(255,105,180,0.08); padding: 1.5rem 2rem; min-width: 180px; text-align: center; }
+    /* 项目经验 */
+    .projects-grid { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; }
+    .project-card { background: #fff0f6; border-radius: 10px; box-shadow: 0 2px 8px rgba(255,105,180,0.08); padding: 2rem; min-width: 250px; max-width: 350px; }
+    /* 联系方式 */
+    .contact-content { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: flex-start; }
+    .social-links { margin-bottom: 1.5rem; }
+    .social-links a { color: #ff69b4; margin-right: 1.5rem; font-size: 1.2rem; text-decoration: underline; }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; min-width: 250px; max-width: 350px; }
+    .contact-form input, .contact-form textarea { padding: 0.75rem; border-radius: 5px; border: none; }
+    .contact-form button { background: #fff; color: #ff69b4; border: none; padding: 0.75rem; border-radius: 5px; font-size: 1rem; cursor: pointer; }
+    .contact-form button:hover { background: #ffe4ef; }
+    /* 页脚 */
+    footer { background-color: #e75480; color: white; text-align: center; padding: 1rem; }
+    /* 响应式样式 */
+    @media (max-width: 900px) {
+      .hero { flex-direction: column; text-align: center; padding: 4rem 1rem; }
+      .about-content { flex-direction: column; align-items: center; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { flex-direction: column; align-items: flex-end; }
+      .nav-links li { margin-left: 0; margin-top: 1rem; }
+      .hero { padding: 2rem 0.5rem; }
+      section { padding: 2rem 0.5rem; }
+    }
+    /* 雪花样式 */
+    #snow-canvas {
+      pointer-events: none;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <ul class="nav-links">
+      <li><a href="#home">首页</a></li>
+      <li><a href="#about">关于我</a></li>
+      <li><a href="#skills">技能</a></li>
+      <li><a href="#projects">项目经验</a></li>
+      <li><a href="#contact">联系方式</a></li>
+    </ul>
+  </nav>
+  <!-- Hero区域 -->
+  <section id="home" class="hero">
+    <div style="display:flex; justify-content:center; align-items:center; margin-bottom:1.5rem;">
+      <img src="image/0b5f0297c331477123582308ee88d04.jpg" alt="个人头像" style="width:140px; height:140px; border-radius:50%; object-fit:cover; box-shadow:0 4px 16px rgba(255,105,180,0.18); border:4px solid #fff;">
+    </div>
+    <img src="https://img2.baidu.com/it/u=1608888888,1234567890&fm=253&fmt=auto&app=138&f=JPEG?w=400&h=400" alt="" class="profile-img">
+    <div class="hero-content">
+      <h1>谭子涵</h1>
+      <p>北京工商大学设计与艺术学院<br>数字媒体艺术专业在校学生</p>
+      <button class="cta-button" id="moreBtn">了解更多</button>
+    </div>
+    <!-- 首页底部左右移动文字 -->
+    <div id="move-text" style="position:absolute; left:0; bottom:0; width:100%; pointer-events:none;">
+      <span style="display:inline-block; font-size:2.1rem; color:#fff; font-weight:bold; text-shadow:0 2px 8px rgba(255,105,180,0.18); letter-spacing:2px;">HELLO!!</span>
+    </div>
+  </section>
+  <!-- 关于我 -->
+  <section id="about">
+    <h2 class="section-title">关于我</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p>大家好，我是谭子涵，现就读于北京工商大学设计与艺术学院数字媒体艺术专业。热爱数字艺术与交互设计，擅长UI/UX设计、视觉传达、动画制作及新媒体创作。希望通过设计与技术的结合，创造更具影响力的数字体验。</p>
+        <div id="float-text" style="font-size:2.2rem; color:#ff69b4; font-weight:bold; margin-top:2.5rem; text-align:center; letter-spacing:2px; user-select:none;">Thats What I Am.</div>
+        <div id="float-text-2" style="font-size:1.7rem; color:#e75480; font-weight:bold; margin-top:2.5rem; margin-left:60px; text-align:right; letter-spacing:1.5px; user-select:none; white-space:nowrap;">This is H0.</div>
+      </div>
+      <div class="experience">
+        <h3>教育经历</h3>
+        <ul>
+          <li>2023-至今 本科 - 数字媒体艺术 - 北京工商大学设计与艺术学院</li>
+        </ul>
+        <h3>核心能力</h3>
+        <ul>
+          <li><strong>技术能力：</strong> 熟练掌握 Adobe Creative Suite (AE, PS, AI, PR, AU)，熟悉 Blender, TouchDesigner, Unity 3D 等专业工具。具备快速学习新软件/技术的能力。</li>
+          <li><strong>创意与设计：</strong> 具备较强的视觉审美、概念构思能力和跨媒介叙事思维。</li>
+          <li><strong>项目实践：</strong> 拥有从概念构思、方案设计到技术实现、调试展示的完整项目经验（课程、个人、小组）。理解项目流程。</li>
+          <li><strong>解决问题：</strong> 在项目执行中能独立查找资料、解决技术难题、优化方案。</li>
+          <li><strong>协作沟通：</strong> 在小组项目中积极沟通，明确分工，有效协作达成目标。</li>
+          <li><strong>学习热情：</strong> 对数字媒体艺术前沿技术（VR/AR, 交互艺术, 生成艺术等）保持高度关注和探索热情。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!-- 技能 -->
+  <section id="skills" style="background-color: #fff0f6;">
+    <h2 class="section-title">技能专长</h2>
+    <div class="skills-container">
+      <a href="portfolio.html" style="text-decoration:none;" target="_blank">
+        <div class="skill-item" style="cursor:pointer;">
+          <h4 style="color:#ff69b4;">UI/UX设计</h4>
+          <p style="color:#333;">熟练使用Adobe XD、Sketch、Figma等设计工具，具备良好的用户体验思维</p>
+        </div>
+      </a>
+      <a href="visual.html" style="text-decoration:none;" target="_blank">
+        <div class="skill-item" style="cursor:pointer;">
+          <h4 style="color:#ff69b4;">视觉传达</h4>
+          <p style="color:#333;">精通Photoshop、Illustrator，擅长平面与品牌视觉设计</p>
+        </div>
+      </a>
+      <a href="video.html" style="text-decoration:none;" target="_blank">
+        <div class="skill-item" style="cursor:pointer;">
+          <h4 style="color:#ff69b4;">动画与视频制作</h4>
+          <p style="color:#333;">掌握After Effects、Premiere，能独立完成动画短片与视频剪辑</p>
+        </div>
+      </a>
+      <div class="skill-item">
+        <h4>前端开发基础</h4>
+        <p>了解HTML5、CSS3、JavaScript，能实现基础网页交互</p>
+      </div>
+    </div>
+  </section>
+  <!-- 项目经验 -->
+  <section id="projects">
+    <h2 class="section-title">项目经验</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h4>校园文化宣传H5</h4>
+        <p>独立完成校园文化主题H5页面的UI设计与部分前端开发，提升了活动参与度。</p>
+      </div>
+      <div class="project-card">
+        <h4>数字艺术展览交互装置</h4>
+        <p>参与数字艺术展览的交互装置设计与多媒体内容制作，获得师生好评。</p>
+      </div>
+      <div class="project-card">
+        <h4>品牌视觉形象设计</h4>
+        <p>为校内创业团队设计品牌LOGO及视觉规范，助力项目推广。</p>
+      </div>
+    </div>
+  </section>
+  <!-- 联系方式 -->
+  <section id="contact" style="background-color: #ff69b4; color: white;">
+    <h2 class="section-title" style="color: white;">联系我</h2>
+    <div class="contact-content" style="align-items: stretch;">
+      <div class="contact-image" style="flex:1; min-width:220px; display:flex; align-items:center; justify-content:center; flex-direction:column;">
+        <img src="images/ui-demo.jpg" alt="" style="max-width:100%; max-height:320px; border-radius:12px; box-shadow:0 2px 8px rgba(255,105,180,0.08);">
+        <div style="margin-top:1.2rem; color:#fff; font-size:1.1rem; line-height:2; text-align:center; background:rgba(255,105,180,0.13); border-radius:8px; padding:1rem 0.5rem; max-width:260px;">
+🌟 嗨！别害羞，快来戳我！🌟<br><br>嘿嘿，终于滑到这里啦？是不是想找我聊聊啦？<br>无论是灵光一闪的点子、好奇宝宝的问题，还是正经八百的合作邀请…<br>我可爱的小耳朵👂（和收件箱📥）都竖起来等着呢！
+        </div>
+      </div>
+      <div style="flex:1; min-width:250px; display:flex; flex-direction:column; justify-content:center;">
+        <div class="social-links">
+          <a href="mailto:liming@email.com" target="_blank">邮箱</a>
+          <a href="https://www.behance.net/liming" target="_blank">Behance</a>
+          <a href="https://www.linkedin.com/in/liming" target="_blank">LinkedIn</a>
+        </div>
+        <form class="contact-form">
+          <input type="text" placeholder="联系人" required>
+          <select required>
+            <option value="">选择所在城市</option>
+            <option value="北京">北京</option>
+            <option value="上海">上海</option>
+            <option value="广州">广州</option>
+            <option value="深圳">深圳</option>
+            <option value="其他">其他</option>
+          </select>
+          <input type="email" placeholder="邮箱" required>
+          <input type="tel" placeholder="联系电话" required pattern="[0-9\-\+]{7,15}">
+          <button type="submit">发送</button>
+        </form>
+      </div>
+    </div>
+  </section>
+  <!-- 新增详细个人简介页面 -->
+  <section id="resume" style="display:none; min-height: 80vh; background: #fff0f6;">
+    <div style="max-width: 700px; margin: 0 auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(255,105,180,0.08); padding: 2.5rem 2rem;">
+      <h2 class="section-title" style="margin-bottom: 1.5rem;">个人简历</h2>
+      <h3 style="text-align:center; font-size: 2rem; margin-bottom: 0.5rem;">谭子涵</h3>
+      <p style="text-align:center; color:#555; margin-bottom: 1rem;">数字媒体艺术专业 | 本科在读</p>
+      <div style="text-align:center; margin-bottom: 1.5rem;">
+        <span style="margin-right:1.2rem;">📱 电话：138-XXXX-XXXX</span>
+        <span style="margin-right:1.2rem;">📧 邮箱：TANZIHAN@email.com</span><br>
+        <span style="margin-right:1.2rem;">📍 地址：北京工商大学</span>
+        <span>🌐 作品集：<a href="https://portfoliobox.com/tanzihan" target="_blank">portfoliobox.com/tanzihan</a></span>
+      </div>
+      <h4 style="color:#ff69b4; margin-top:2rem;">教育背景</h4>
+      <ul style="margin-left:1.5rem; margin-bottom:1rem;">
+        <li>北京工商大学 · 数字媒体艺术专业<br>2023.09 - 2027.06（预期）</li>
+      </ul>
+      <div style="margin-bottom:1rem;">
+        <strong>主修课程：</strong>动态视觉设计、用户体验设计、用户界面设计、影视剪辑、创意编程、故事板创作、三维静态影像设计
+      </div>
+      <div style="margin-bottom:1rem;">
+        <strong>GPA：</strong>3.50/5.0（专业前15%）<br>
+        <strong>奖学金：</strong>2023校级二等奖学金、2023年北京气象局一等奖
+      </div>
+      <h4 style="color:#ff69b4; margin-top:2rem;">专业技能</h4>
+      <div style="margin-bottom:1rem;">
+        <strong>💡 技术工具</strong><br>
+        设计软件：Adobe Creative Suite（Ps/Ai/Ae/Pr/Au）、Figma、Blender、Cinema 4D<br>
+        开发工具：HTML/CSS基础、Processing创意
+      </div>
+      <div style="text-align:center; margin-top:2.5rem;">
+        <button class="cta-button" id="backBtn">返回主页</button>
+      </div>
+    </div>
+  </section>
+  <!-- 页脚 -->
+  <footer>
+    <p>© 2024 谭子涵. All rights reserved.</p>
+  </footer>
+  <!-- 雪花canvas -->
+  <canvas id="snow-canvas"></canvas>
+  <script>
+  // 页面切换逻辑
+  const moreBtn = document.getElementById('moreBtn');
+  const backBtn = document.getElementById('backBtn');
+  const mainSections = [
+    document.getElementById('home'),
+    document.getElementById('about'),
+    document.getElementById('skills'),
+    document.getElementById('projects'),
+    document.getElementById('contact')
+  ];
+  const resumeSection = document.getElementById('resume');
+
+  if(moreBtn) {
+    moreBtn.onclick = function() {
+      mainSections.forEach(sec => sec.style.display = 'none');
+      resumeSection.style.display = 'block';
+      window.scrollTo(0,0);
+    };
+  }
+  if(backBtn) {
+    backBtn.onclick = function() {
+      mainSections.forEach(sec => sec.style.display = '');
+      resumeSection.style.display = 'none';
+      window.scrollTo(0,0);
+    };
+  }
+  // 雪花飘落效果
+  const canvas = document.getElementById('snow-canvas');
+  const ctx = canvas.getContext('2d');
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+  canvas.width = width;
+  canvas.height = height;
+  let snowflakes = [];
+  function randomBetween(a, b) { return a + Math.random() * (b - a); }
+  function createSnowflake() {
+    return {
+      x: randomBetween(0, width),
+      y: randomBetween(-height, 0),
+      r: randomBetween(3, 7),
+      d: randomBetween(1, 2),
+      opacity: randomBetween(0.5, 1),
+      speed: randomBetween(0.5, 1.2),
+      drift: randomBetween(-0.5, 0.5)
+    };
+  }
+  function initSnowflakes(num = 100) {
+    snowflakes = [];
+    for (let i = 0; i < num; i++) snowflakes.push(createSnowflake());
+  }
+  function drawSnowflakes() {
+    ctx.clearRect(0, 0, width, height);
+    ctx.save();
+    ctx.globalAlpha = 0.8;
+    ctx.fillStyle = '#fff';
+    snowflakes.forEach(flake => {
+      ctx.beginPath();
+      ctx.arc(flake.x, flake.y, flake.r, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.globalAlpha = flake.opacity;
+      ctx.fill();
+    });
+    ctx.restore();
+  }
+  function updateSnowflakes() {
+    snowflakes.forEach(flake => {
+      flake.y += flake.speed;
+      flake.x += flake.drift;
+      if (flake.y > height) {
+        flake.x = randomBetween(0, width);
+        flake.y = randomBetween(-10, 0);
+      }
+      if (flake.x < 0 || flake.x > width) {
+        flake.x = randomBetween(0, width);
+      }
+    });
+  }
+  function animateSnow() {
+    drawSnowflakes();
+    updateSnowflakes();
+    requestAnimationFrame(animateSnow);
+  }
+  window.addEventListener('resize', () => {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+    initSnowflakes(100);
+  });
+  initSnowflakes(100);
+  animateSnow();
+  // 浮动文字动画
+  (function(){
+    const floatText = document.getElementById('float-text');
+    const floatText2 = document.getElementById('float-text-2');
+    if (!floatText) return;
+    let baseTop = 0;
+    let t = 0;
+    function animateFloatText() {
+      // 叠加多个正弦波制造不规则上下浮动
+      t += 0.008; // 控制速度（越小越慢）
+      const offset = Math.sin(t) * 12 + Math.sin(t*0.7+1) * 8 + Math.sin(t*1.3-2) * 6;
+      floatText.style.transform = `translateY(${baseTop + offset}px)`;
+      if(floatText2) {
+        // 第二段浮动，参数略有不同，错位浮动
+        const offset2 = Math.sin(t*0.9+2) * 10 + Math.sin(t*0.5-1) * 7 + Math.sin(t*1.5+1) * 5;
+        floatText2.style.transform = `translateY(${baseTop + offset2}px)`;
+      }
+      requestAnimationFrame(animateFloatText);
+    }
+    animateFloatText();
+  })();
+  // 首页底部左右移动文字动画
+  (function(){
+    const moveText = document.getElementById('move-text');
+    if (!moveText) return;
+    const span = moveText.querySelector('span');
+    let direction = 1;
+    let x = 0;
+    let lastTimestamp = null;
+    function animateMoveText(timestamp) {
+      if (!lastTimestamp) lastTimestamp = timestamp;
+      const dt = (timestamp - lastTimestamp) / 1000;
+      lastTimestamp = timestamp;
+      // 速度：每秒移动220px
+      x += direction * 220 * dt;
+      const maxX = moveText.offsetWidth - span.offsetWidth - 10;
+      if (x >= maxX) { x = maxX; direction = -1; }
+      if (x <= 0) { x = 0; direction = 1; }
+      span.style.transform = `translateX(${x}px)`;
+      requestAnimationFrame(animateMoveText);
+    }
+    // 保证section为relative定位
+    const heroSection = document.getElementById('home');
+    if(heroSection && getComputedStyle(heroSection).position === 'static') {
+      heroSection.style.position = 'relative';
+    }
+    requestAnimationFrame(animateMoveText);
+  })();
+  </script>
+</body>
+</html> 

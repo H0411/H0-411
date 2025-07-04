@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI/UX设计作品集</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #fff0f6; margin: 0; }
+    .navbar { background: white; padding: 1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.08); }
+    .navbar a { color: #ff69b4; text-decoration: none; font-weight: bold; }
+    .container { max-width: 1100px; margin: 2.5rem auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(255,105,180,0.08); padding: 2.5rem 2rem; }
+    .section-title { color: #ff69b4; text-align: center; margin-bottom: 2rem; font-size: 2rem; }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .gallery-item {
+      background: #fff0f6;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(255,105,180,0.08);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+    }
+    .gallery-item img {
+      width: 180px;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      background: #eee;
+      display: block;
+    }
+    .back-btn {
+      display: block;
+      margin: 2rem auto 0 auto;
+      background: #ff69b4;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 2rem;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .back-btn:hover { background: #e75480; }
+    @media (max-width: 700px) {
+      .container { padding: 1rem 0.5rem; }
+      .gallery { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html">← 返回主页</a>
+  </nav>
+  <div class="container">
+    <h2 class="section-title">UI/UX设计作品集</h2>
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="image/1565a5d21a552894601f0a968126d6e.png" alt="作品1" />
+        <div>作品1标题</div>
+      </div>
+      <div class="gallery-item">
+        <img src="image/20b2e4220443a7d4b5a9d32b46fddc4.png" alt="作品2" />
+        <div>作品2标题</div>
+      </div>
+      <div class="gallery-item">
+        <img src="image/468880f466c5e1b4ace15bc9bae796e.png" alt="作品3" />
+        <div>作品3标题</div>
+      </div>
+      <div class="gallery-item">
+        <img src="image/6189fc17ad9d9e3de7c16414c28284c.png" alt="作品4" />
+        <div>作品4标题</div>
+      </div>
+      <div class="gallery-item">
+        <img src="image/69075d67c91f19304c93757a4a17920.png" alt="作品5" />
+        <div>作品5标题</div>
+      </div>
+      <div class="gallery-item">
+        <img src="image/e5d8a79b8a9bf9ca77c727896c62e74.png" alt="作品6" />
+        <div>作品6标题</div>
+      </div>
+    </div>
+    <button class="back-btn" onclick="window.location.href='index.html'">返回主页</button>
+  </div>
+</body>
+</html> 

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>动画与视频制作作品集</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #fff0f6; margin: 0; }
+    .navbar { background: white; padding: 1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.08); }
+    .navbar a { color: #ff69b4; text-decoration: none; font-weight: bold; }
+    .container { max-width: 900px; margin: 2.5rem auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(255,105,180,0.08); padding: 2.5rem 2rem; }
+    .section-title { color: #ff69b4; text-align: center; margin-bottom: 2rem; font-size: 2rem; }
+    .video-section { margin-bottom: 2.5rem; }
+    .video-title { text-align: center; font-size: 1.2rem; color: #e75480; margin: 1rem 0 0.5rem 0; }
+    .video-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .video-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #fff0f6;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(255,105,180,0.08);
+      padding: 1rem;
+      min-width: 220px;
+      max-width: 320px;
+    }
+    .video-item video {
+      width: 220px;
+      height: 390px;
+      border-radius: 8px;
+      background: #eee;
+      margin-bottom: 0.5rem;
+      object-fit: cover;
+    }
+    .video-item.landscape video {
+      width: 100%;
+      max-width: 600px;
+      height: 340px;
+    }
+    .video-item.landscape {
+      max-width: 600px;
+      min-width: 320px;
+      width: 100%;
+      margin: 0 auto 2rem auto;
+    }
+    .back-btn {
+      display: block;
+      margin: 2rem auto 0 auto;
+      background: #ff69b4;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 2rem;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .back-btn:hover { background: #e75480; }
+    @media (max-width: 700px) {
+      .container { padding: 1rem 0.5rem; }
+      .video-row { gap: 1rem; }
+      .video-item.landscape video { height: 180px; }
+      .video-item video { height: 220px; }
+    }
+    /* 竖版视频单独居中 */
+    .video-item.portrait-center {
+      margin: 0 auto 2.5rem auto;
+      float: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html">← 返回主页</a>
+  </nav>
+  <div class="container">
+    <h2 class="section-title">动画与视频制作作品集</h2>
+    <div class="video-section">
+      <div class="video-item landscape">
+        <div class="video-title">纪录片</div>
+        <video src="image/video1.mp4" controls poster="images/documentary-cover.jpg" autoplay muted playsinline></video>
+      </div>
+      <div class="video-item landscape">
+        <div class="video-title">广告拍摄</div>
+        <video src="image/video3.mp4" controls poster="images/ad-landscape-cover.jpg" autoplay muted playsinline></video>
+      </div>
+      <div class="video-item portrait-center">
+        <div class="video-title">广告拍摄</div>
+        <video src="image/video2.mp4" controls poster="images/ad-portrait-cover.jpg" autoplay muted playsinline></video>
+      </div>
+    </div>
+    <button class="back-btn" onclick="window.location.href='index.html'">返回主页</button>
+  </div>
+</body>
+</html> 
